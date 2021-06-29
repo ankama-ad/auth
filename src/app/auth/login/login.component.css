@@ -1,0 +1,44 @@
+.header {
+  width: 100%;
+  padding: 3%;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  background-color: #daa520;
+}
+
+.loginbox {
+  width: 30%;
+  height: 500px;
+  background: #00bfbf;
+  margin: 20px 0px;
+}
+
+.loginhead {
+  text-align: center;
+  color: aliceblue;
+  margin-bottom: 50px;
+}
+
+button {
+  width: 100px;
+}
+
+.btnholder {
+  text-align: center;
+}
+
+label {
+  color: whitesmoke;
+}
+
+
+
+.footer {
+  width: 100%;
+  padding: 3%;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  background-color: rgb(8, 77, 224);
+}

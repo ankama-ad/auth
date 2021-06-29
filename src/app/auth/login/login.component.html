@@ -1,0 +1,38 @@
+
+  <!-- <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
+    
+      <input  name="email" ngModel="email" type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+   
+      <input type="password" name="password"  ngModel="password"  placeholder="Password" #passwordInput="ngModel" required>
+   
+    <button  type="submit" *ngIf="!isLoading">Login</button>
+  </form> -->
+  
+
+  <div class="mt-5 d-flex justify-content-md-center">
+    <div class="loginbox">
+        <div class="d-flex justify-content-md-center">
+            <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+                <h2 class="loginhead">Login</h2>
+                <div class="form-group">
+                   
+                <label for="exampleInputEmail1">User Name</label>
+                <input  name="email" ngModel="email" class="form-control" type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+   
+                <small id="emailHelp" class="form-text text-muted">We'll never share your details.</small>
+                </div>
+                <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+               
+                <input type="password" name="password" class="form-control"  ngModel="password"  placeholder="Password" #passwordInput="ngModel" required>
+                </div>
+                <div class="d-flex btnholder mt-3 justify-content-end">
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
