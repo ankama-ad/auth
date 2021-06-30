@@ -14,8 +14,8 @@ export class AuthService {
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
 
-  private readonly JWT_TOKEN = 'JWT_TOKEN';
-  private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
+  //private readonly JWT_TOKEN = 'JWT_TOKEN';
+  //private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   private loggedUser: string;
 
   constructor(private http: HttpClient, private router: Router, private appService: AppService) {}
@@ -67,6 +67,7 @@ export class AuthService {
   }
 
   refreshToken() {
+    console.log('refreshing token');
     return this.http.post<{ token: string; expiresIn: number; refreshToken: string }>(
       "http://localhost:3000/api/auth/refresh", {
       'refreshToken': this.getRefreshToken()
@@ -132,7 +133,9 @@ export class AuthService {
 
   private clearAuthData() {
     localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
     localStorage.removeItem("expiration");
+    console.log('reftoken',  localStorage.getItem("refreshToken"));
   }
 
   private setupToken(response: any){

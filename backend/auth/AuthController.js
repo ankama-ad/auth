@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 var User = require('../user/User');
 const randtoken = require('rand-token');
 const refreshTokens = {};
-const EXPIRES_IN = 15;
+const EXPIRES_IN = 30;
 
 /**
  * Configure JWT

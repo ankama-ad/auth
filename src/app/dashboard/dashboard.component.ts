@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  tick = 0;
   constructor() { }
 
   ngOnInit(): void {
+    setInterval(() =>{
+      this.tick++;
+    } , 1000);
   }
 
 }
