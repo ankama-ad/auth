@@ -12,13 +12,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ReportsComponent } from './reports/reports.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

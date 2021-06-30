@@ -74,6 +74,10 @@ export class AuthService {
       const now = new Date();
       const expirationDate = new Date(now.getTime() + res.expiresIn * 1000);
       this.saveAuthData(res.token, expirationDate, res.refreshToken, true);
+      const expiresInDuration = res.expiresIn;
+      this.setAuthTimer(expiresInDuration);
+      this.isAuthenticated = true;
+      this.authStatusListener.next(true);           
       //this.storeJwtToken(tokens.jwt);
     }));
   }
@@ -103,13 +107,18 @@ export class AuthService {
   }
 
   private getRefreshToken() {
-    return localStorage.getItem(this.REFRESH_TOKEN);
+    return localStorage.getItem("refereshToken");
   }
 
   private setAuthTimer(duration: number) {
     console.log("Setting timer: " + duration);
     this.tokenTimer = setTimeout(() => {
-      this.logout();
+     if(this.isAuthenticated){
+       this.refreshToken().subscribe(c => { 
+        // this.setupToken(c);
+       });
+     }
+      // this.logout();
     }, duration * 1000);
   }
 
@@ -124,6 +133,23 @@ export class AuthService {
   private clearAuthData() {
     localStorage.removeItem("token");
     localStorage.removeItem("expiration");
+  }
+
+  private setupToken(response: any){
+    const token = response.token;
+    this.token = token;
+    if (token) {
+      const expiresInDuration = response.expiresIn;
+      this.setAuthTimer(expiresInDuration);
+      this.isAuthenticated = true;
+      this.authStatusListener.next(true);
+      const now = new Date();
+      const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+      console.log(expirationDate);
+      this.saveAuthData(token, expirationDate, response.refreshToken);
+      this.appService.setUserLoggedIn(true)
+      this.router.navigate(["/dashboard"]);
+    }
   }
 
   private getAuthData() {

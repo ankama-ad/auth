@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 var User = require('../user/User');
 const randtoken = require('rand-token');
 const refreshTokens = {};
-const EXPIRES_IN = 600;
+const EXPIRES_IN = 15;
 
 /**
  * Configure JWT
@@ -34,7 +34,7 @@ router.post('/login', function(req, res) {
     });
     const refreshToken = randtoken.uid(256);
     refreshTokens[refreshToken] = User.email;
-    console.log(refreshTokens);
+    // console.log('refreshtoken', refreshTokens);
     // return the information including token as JSON
     res.status(200).send({ auth: true, token: token, expiresIn: EXPIRES_IN , refreshToken: refreshToken});
 
@@ -56,6 +56,7 @@ router.post('/refresh', function (req, res) {
     //refreshTokens[refreshToken] = User.email;
     //console.log(refreshTokens);
     // return the information including token as JSON
+    console.log('refreshtoken', token);
     res.status(200).send({ auth: true, token: token, expiresIn: EXPIRES_IN });
   }
   else {
